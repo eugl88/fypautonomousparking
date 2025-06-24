@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introduction</title>
+        <script type="text/javascript" src="../assets/js/quiz.js"></script>
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/modules.css">
+    </head>
+</html>
+<body class="module-4">
+    <!-- Navigation progress-container -->
+    <div class="nav-container">
+        <a href="../index.html">
+            <h1>&larr;</h1>
+            <img class="nav-image" src="../assets/media/icon_home.png" alt="Home Button">
+        </a>
+    </div>
+    <!-- Folder Container -->
+    <div class="folder-container">
+        <div class="back-folder-part">
+            <div class="folder-label">Quiz</div>
+        </div>
+        <div class="main-folder-part">
+            <div class="quiz">
+                <div class="question" data-question="4">
+                  <p>1. How does the sensor track wheel rotation?</p>
+                </div>
+                <div class="answers">
+                    <label class="answer">
+                        <input type="checkbox" value="Magnetic field changes" class="answer-option" data-question="4" /> Magnetic field changes
+                    </label>
+                    <label class="answer">
+                        <input type="checkbox" value="Light interruptions from disc slots" class="answer-option" data-question="4" /> Light interruptions from disc slots
+                    </label>
+                    <label class="answer">
+                        <input type="checkbox" value="Sound reflections" class="answer-option" data-question="4" /> Sound reflections
+                    </label>
+                    <div id="feedback-4" class="feedback"></div>
+                </div>
+
+                <div class="question" data-question="5">
+                    <p>2. How many slots does the encoder disc have?</p>
+                  </div>
+                  <div class="answers">
+                      <label class="answer">
+                          <input type="checkbox" value="20" class="answer-option" data-question="5" /> 20
+                      </label>
+                      <label class="answer">
+                          <input type="checkbox" value="30" class="answer-option" data-question="5" /> 30
+                      </label>
+                      <div id="feedback-5" class="feedback"></div>
+                  </div>
+
+
+                <div class="question" data-question="6">
+                  <p>3. After uploading the code, what is the rotation sequence of the wheel before its spin?</p>
+                </div>
+                <div class="answers">
+                    <label class="answer">
+                        <input type="checkbox" value="1-1-2" class="answer-option" data-question="6" /> 1-1-2
+                    </label>
+                    <label class="answer">
+                        <input type="checkbox" value="1-2-1" class="answer-option" data-question="6" /> 1-2-1
+                    </label>
+                    <div id="feedback-6" class="feedback"></div>
+                </div>
+
+                <button id="submit" class="quiz_button" onclick="submitQuiz()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- Controls Container -->
+    <div class="controls-container">
+        <button class="previous-button" 
+        onclick="window.location.href='04_Code.html';">
+            <span>Previous</span>
+        </button>
+        <button class="replay-button" onclick="document.getElementById('folder-video').play();">
+            <span>Replay</span>
+        </button>
+        <button class="next-button" 
+        onclick="window.location.href='../';">
+            <span>Next</span>
+        </button>
+    </div>
+    
+    <!-- Progress Container -->
+    <div class="progress-container">
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='04_Introduction.html';">
+            <div class="progress-icon">
+
+                <img src="../assets/media/icon_introduction.png" alt="Introduction Icon">
+            </div>
+            <span class="progress-text">Introduction</span>
+        </div>
+        
+        <div class="arrow"><span></span><span></span><span></span></div>
+
+
+        <!-- progress step -->
+        <div class="progress-step completed-step" 
+        onclick="window.location.href='04_Building.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_building.png" alt="Building Icon">
+            </div>
+            <span class="progress-text">Building</span>
+        </div>
+        
+        <div class="arrow"><span></span><span></span><span></span></div>
+
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='04_Wiring.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_wiring.png" alt="Wiring Icon">
+            </div>
+            <span class="progress-text">Wiring</span>
+        </div>
+
+        <div class="arrow"><span></span><span></span><span></span></div>
+        
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='04_Code.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_code.png" alt="Code Icon">
+            </div>
+            <span class="progress-text">Code</span>
+        </div>
+
+        <div class="arrow"><span></span><span></span><span></span></div>
+        
+        
+        <!-- progress step -->
+        <div class="progress-step active-step">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_quiz.png" alt="Quiz Icon">
+            </div>
+            <span class="progress-text">Quiz</span>
+        </div>
+        
+    </div>
+
+
+</body>
+
+<style>
+
+    
+
+
+</style>

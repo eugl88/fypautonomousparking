@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../assets/js/quiz.js" defer></script>
+        <title>Quiz</title>
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/modules.css">
+        
+    </head>
+</html>
+<body class="module-1">
+    <div class="nav-container">
+        <a href="../index.html">
+            <h1>&larr;</h1>
+            <img class="nav-image" src="../assets/media/icon_home.png" alt="Home Button">
+        </a>
+    </div>
+    <!-- Folder Container -->
+    <div class="folder-container">
+      <div class="back-folder-part">
+          <div class="folder-label">Quiz</div>
+      </div>
+      <div class="main-folder-part">
+        <div class="quiz">
+          <div class="question" data-question="1">
+            <p>1. Do you have all the components in AutoPark Builder?</p>
+          </div>
+          <div class="answers">
+            <!-- 'Arduino Mega Board', 'Motor Driver Shield', 'Chassis', 'Breadboard', 'Li-ion Battery & other components', 'DC Motors components', 'Ultrasonic components', 'Optical Speed Sensor & Encoder Disc' -->
+            <label class="answer">
+              <input type="checkbox" value="Arduino Mega Board" class="answer-option" data-question="1" /> Arduino Mega Board
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="Motor Driver Shield" class="answer-option" data-question="1" /> Motor Driver Shield
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="Chassis" class="answer-option" data-question="1" /> Chassis
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="Breadboard" class="answer-option" data-question="1" /> Breadboard
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="Li-ion Battery & other components" class="answer-option" data-question="1" /> Li-ion Battery & other components
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="DC Motors components" class="answer-option" data-question="1" /> DC Motors components
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="Ultrasonic components" class="answer-option" data-question="1" /> Ultrasonic components
+            </label>
+            <label class="answer">
+              <input type="checkbox" value="Optical Speed Sensor & Encoder Disc" class="answer-option" data-question="1" /> Optical Speed Sensor & Encoder Disc
+            </label>
+            <div id="feedback-1" class="feedback"></div>
+          </div>
+          <button id="submit" class="quiz_button" onclick="submitQuiz()">Submit</button>
+        </div>
+      </div>
+  </div>
+    
+    <div class="controls-container">
+        <button class="previous-button" 
+        onclick="window.location.href='01_Introduction.html';">
+            <span>Previous</span>
+        </button>
+        <!-- <button class="replay-button" onclick="document.getElementById('folder-video').play();">
+            <span>Replay</span>
+        </button> -->
+        
+        <button class="next-button" 
+        onclick="window.location.href='01_Complete.html';">
+            <span>Next</span>
+        </button>
+    </div>
+    
+
+    <div class="progress-container">
+        <div class="progress-step completed-step" 
+        onclick="window.location.href='01_Introduction.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_introduction.png" alt="Introduction Icon">
+            </div>
+            <span class="progress-text">Introduction</span>
+        </div>
+        
+        <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="progress-step active-step">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_quiz.png" alt="Components Icon">
+            </div>
+            <span class="progress-text">Quiz</span>
+        </div>
+        
+        <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+
+        <div class="progress-step" 
+        onclick="window.location.href='01_Complete.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_complete.png" alt="Complete Icon">
+            </div>
+            <span class="progress-text">Complete</span>
+        </div>
+        
+    </div>
+
+
+</body>
+
+<style>
+
+    
+
+
+</style>

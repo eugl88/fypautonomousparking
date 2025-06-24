@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3D Viewer</title>
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/modules.css">
+    </head>
+</html>
+</header>
+<body>
+    <a href="../index.html">
+            <h1>&larr;</h1>
+            <img class="nav-image" src="../assets/media/icon_homeinverted.png" alt="Home Button">
+        </a>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+    <spline-viewer url="https://prod.spline.design/G4uc3z379c2ITP5m/scene.splinecode"></spline-viewer>
+</body>
+<style>
+    body {
+        background-color: #222;
+    }
+    spline-viewer {
+        width: 100vw;
+        height: auto;
+        display: block;
+    }
+    a {
+        position: absolute;
+        top: 5vw;
+        left: 25vw;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    a > h1 {
+        color: rgb(186, 186, 186);
+    }
+    img {
+        width: 2vw;
+    }
+  </style>
+  

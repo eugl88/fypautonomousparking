@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introduction</title>
+        <script type="text/javascript" src="../assets/js/code.js"></script>
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/modules.css">
+    </head>
+</html>
+<body class="module-3">
+    <!-- Navigation progress-container -->
+    <div class="nav-container">
+        <a href="../index.html">
+            <h1>&larr;</h1>
+            <img class="nav-image" src="../assets/media/icon_home.png" alt="Home Button">
+        </a>
+    </div>
+    <!-- Folder Container -->
+    <div class="folder-container">
+        <div class="back-folder-part">
+            <div class="folder-label">Code</div>
+        </div>
+        <div class="main-folder-part">
+            <div class="code-container">
+                <span>Copy & Paste the code into Arduino IDE.</span>
+                <!-- Arduino Code Block -->
+                <div class="code-box">
+                    <pre id="arduinoCode">
+#include &lt;Ultrasonic.h&gt;
+#include &lt;AFMotor.h&gt;
+    
+// Ultrasonic Sensor
+Ultrasonic frontSensor(36, 37);
+Ultrasonic rearSensor(42, 43);
+
+// Motor Initialization
+AF_DCMotor motor1(1);
+AF_DCMotor motor2(2);
+AF_DCMotor motor3(3);
+AF_DCMotor motor4(4);
+
+// Constants
+const int DEFAULT_SPEED = 180;
+const int STOP_DISTANCE = 20;
+// const int MAX_DETECT_DISTANCE = 300;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("\nModule 2.1: Car Movement with Ultrasonic Sensor");
+  delay(2500);
+}
+
+void loop() {
+  long frontSensorDistance = printSensorDistance(frontSensor);
+  if (frontSensorDistance > STOP_DISTANCE) {
+    moveForward(DEFAULT_SPEED);
+  } else {
+    stopMotors();
+    delay(100);
+    moveBackward(DEFAULT_SPEED);
+    delay(500);
+    moveLeft(DEFAULT_SPEED);
+    delay(250);
+    stopMotors();
+    delay(500);
+  }
+
+}
+
+// Reads and prints distance from the ultrasonic sensor
+long printSensorDistance (Ultrasonic sensor) {
+  long sensorDistance = sensor.read(CM); // Reading the distance
+  // Print the distance
+  Serial.print(sensorDistance);
+  Serial.println("cm");
+  return sensorDistance;
+}
+
+// Sets the speed and moves forward
+void moveForward(int speed) {
+  setMotorsSpeed(speed);
+  motor1.run(FORWARD);
+  motor2.run(FORWARD);
+  motor3.run(FORWARD);
+  motor4.run(FORWARD);
+}
+
+// Sets the speed and moves backward
+void moveBackward(int speed) {
+  setMotorsSpeed(speed);
+  motor1.run(BACKWARD);
+  motor2.run(BACKWARD);
+  motor3.run(BACKWARD);
+  motor4.run(BACKWARD);
+}
+
+// Sets the speed and moves Left
+void moveLeft(int speed) {
+  setMotorsSpeed(speed);
+  motor1.run(BACKWARD);
+  motor2.run(BACKWARD);
+  motor3.run(FORWARD);
+  motor4.run(FORWARD);
+}
+
+// Stops all motors
+void stopMotors() {
+  setMotorsSpeed(0);
+}
+
+// Sets the speed for all motors
+void setMotorsSpeed(int speed) {
+  motor1.setSpeed(speed);
+  motor2.setSpeed(speed);
+  motor3.setSpeed(speed);
+  motor4.setSpeed(speed);
+}
+
+
+                    </pre>
+                </div>
+                <!-- Copy Button -->
+                <button onclick="copyCode()">Copy Code to Clipboard</button>
+                <!-- Feedback Message -->
+                <div id="copyFeedback" class="copy-feedback"></div>
+                <span>Click on Verify &#10141; Upload to Arduino Mega Board!</span>
+                <br>
+                <span>Go to Tools &#10141; open Serial Monitor and see the detected range!</span>
+            </div>
+        </div>
+    </div>
+    <!-- Controls Container -->
+    <div class="controls-container">
+        <button class="previous-button" 
+        onclick="window.location.href='03_Wiring.html';">
+            <span>Previous</span>
+        </button>
+        <button class="next-button" 
+        onclick="window.location.href='03_Quiz.html';">
+            <span>Next</span>
+        </button>
+    </div>
+    
+    <!-- Progress Container -->
+    <div class="progress-container">
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='03_Introduction.html';">
+            <div class="progress-icon">
+
+                <img src="../assets/media/icon_introduction.png" alt="Introduction Icon">
+            </div>
+            <span class="progress-text">Introduction</span>
+        </div>
+        
+        <div class="arrow"><span></span><span></span><span></span></div>
+
+
+        <!-- progress step -->
+        <div class="progress-step completed-step" 
+        onclick="window.location.href='03_Building.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_building.png" alt="Building Icon">
+            </div>
+            <span class="progress-text">Building</span>
+        </div>
+        
+        <div class="arrow"><span></span><span></span><span></span></div>
+
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='03_Wiring.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_wiring.png" alt="Wiring Icon">
+            </div>
+            <span class="progress-text">Wiring</span>
+        </div>
+
+        <div class="arrow"><span></span><span></span><span></span></div>
+        
+
+        <!-- progress step -->
+        <div class="progress-step active-step">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_code.png" alt="Code Icon">
+            </div>
+            <span class="progress-text">Code</span>
+        </div>
+
+        <div class="arrow"><span></span><span></span><span></span></div>
+        
+        
+        <!-- progress step -->
+        <div class="progress-step"
+        onclick="window.location.href='03_Quiz.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_quiz.png" alt="Quiz Icon">
+            </div>
+            <span class="progress-text">Quiz</span>
+        </div>
+        
+    </div>
+
+
+</body>
+
+<style>
+
+    
+
+
+</style>

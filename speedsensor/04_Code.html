@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introduction</title>
+        <script type="text/javascript" src="../assets/js/code.js"></script>
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/modules.css">
+    </head>
+</html>
+<body class="module-4">
+    <!-- Navigation progress-container -->
+    <div class="nav-container">
+        <a href="../index.html">
+            <h1>&larr;</h1>
+            <img class="nav-image" src="../assets/media/icon_home.png" alt="Home Button">
+        </a>
+    </div>
+    <!-- Folder Container -->
+    <div class="folder-container">
+        <div class="back-folder-part">
+            <div class="folder-label">Code</div>
+        </div>
+        <div class="main-folder-part">
+            <div class="code-container">
+                <span>Copy & Paste the code into Arduino IDE.</span>
+                <!-- Arduino Code Block -->
+                <div class="code-box">
+                    <pre id="arduinoCode">
+#include &lt;AFMotor.h&gt;
+// Motor Initialization
+AF_DCMotor motor1(1);
+AF_DCMotor motor2(2);
+AF_DCMotor motor3(3);
+AF_DCMotor motor4(4);
+
+// Constants
+const int DEFAULT_SPEED = 180;
+const int STOP_DISTANCE = 20;
+const int ENCODER_PULSES_PER_ROTATION = 20; // Encoder has 20 slots, so 20 pulses per rotation
+
+// Variables
+const int speedSensorPin = 21;  // Pin where speed sensor is connected
+volatile int prev_signalValue = 0; // Store previous signal value from speed sensor
+volatile int pulseCounter = 0; // To count the number of speed sensor pulses
+int targetPulseCount = 0; // To set the number of targeted pulse counter during rotation
+
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("\nModule 3: Testing Speed Sensor");
+  delay(2500);
+  // Using Interrupt to call countPulse function during detection of signal from speed sensor
+  attachInterrupt(digitalPinToInterrupt(speedSensorPin), countPulse, FALLING);  
+}
+
+void loop() {
+  moveForward(DEFAULT_SPEED);
+  rotation(1);
+  moveForward(DEFAULT_SPEED);
+  rotation(2);
+  moveForward(DEFAULT_SPEED);
+  rotation(1);
+  spin();
+  rotation(2.1);
+  delay(100);
+  stopMotors();
+}
+
+
+// Interrupt function to count pulses from the encoder
+void countPulse() {
+  // Read the state of the speed senor pin
+  int signalValue = digitalRead(speedSensorPin);
+
+  // Check if the signal has changed from LOW to HIGH (rising edge)
+  if (signalValue == HIGH && prev_signalValue == LOW) {
+    pulseCounter++;  // Increment the pulse count
+    Serial.print("Pulse count: ");
+    Serial.println(pulseCounter);  // Print the counter value to the serial monitor
+  }
+
+  // Store the current signal value for the next iteration
+  prev_signalValue = signalValue;
+}
+
+// Function with pulse-based rotation control
+void rotation(float rotation) {
+  pulseCounter = 0;  // Reset pulse count
+  targetPulseCount = rotation * ENCODER_PULSES_PER_ROTATION;
+
+  // While loop to keep the wheels spinning 
+  while (pulseCounter &lt; targetPulseCount) {
+
+  }
+  stopMotors();
+}
+
+// Moves in a specific direction
+void moveForward(int speed) {
+  setMotorsSpeed(speed);
+  motor1.run(FORWARD);
+  motor2.run(FORWARD);
+  motor3.run(FORWARD);
+  motor4.run(FORWARD);
+}
+void spin() {
+  setMotorsSpeed(200);
+  motor1.run(FORWARD);
+  motor2.run(FORWARD);
+  motor3.run(BACKWARD);
+  motor4.run(BACKWARD);
+}
+
+// Stops all motors
+void stopMotors() {
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+  motor3.run(RELEASE);
+  motor4.run(RELEASE);
+  delay(1000);
+}
+
+// Sets the speed for all motors
+void setMotorsSpeed(int speed) {
+  motor1.setSpeed(speed);
+  motor2.setSpeed(speed);
+  motor3.setSpeed(speed);
+  motor4.setSpeed(speed);
+}
+
+    
+
+
+                    </pre>
+                </div>
+                <!-- Copy Button -->
+                <button onclick="copyCode()">Copy Code to Clipboard</button>
+                <!-- Feedback Message -->
+                <div id="copyFeedback" class="copy-feedback"></div>
+                <span>Click on Verify &#10141; Upload to Arduino Mega Board!</span>
+            </div>
+        </div>
+    </div>
+    <!-- Controls Container -->
+    <div class="controls-container">
+        <button class="previous-button" 
+        onclick="window.location.href='04_Wiring.html';">
+            <span>Previous</span>
+        </button>
+        <button class="replay-button" onclick="document.getElementById('folder-video').play();">
+            <span>Replay</span>
+        </button>
+        <button class="next-button" 
+        onclick="window.location.href='04_Quiz.html';">
+            <span>Next</span>
+        </button>
+    </div>
+    
+    <!-- Progress Container -->
+    <div class="progress-container">
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='04_Introduction.html';">
+            <div class="progress-icon">
+
+                <img src="../assets/media/icon_introduction.png" alt="Introduction Icon">
+            </div>
+            <span class="progress-text">Introduction</span>
+        </div>
+        
+        <div class="arrow"><span></span><span></span><span></span></div>
+
+
+        <!-- progress step -->
+        <div class="progress-step completed-step" 
+        onclick="window.location.href='04_Building.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_building.png" alt="Building Icon">
+            </div>
+            <span class="progress-text">Building</span>
+        </div>
+        
+        <div class="arrow"><span></span><span></span><span></span></div>
+
+
+        <!-- progress step -->
+        <div class="progress-step completed-step"
+        onclick="window.location.href='04_Wiring.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_wiring.png" alt="Wiring Icon">
+            </div>
+            <span class="progress-text">Wiring</span>
+        </div>
+
+        <div class="arrow"><span></span><span></span><span></span></div>
+        
+
+        <!-- progress step -->
+        <div class="progress-step active-step">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_code.png" alt="Code Icon">
+            </div>
+            <span class="progress-text">Code</span>
+        </div>
+
+        <div class="arrow"><span></span><span></span><span></span></div>
+        
+        
+        <!-- progress step -->
+        <div class="progress-step"
+        onclick="window.location.href='04_Quiz.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_quiz.png" alt="Quiz Icon">
+            </div>
+            <span class="progress-text">Quiz</span>
+        </div>
+        
+    </div>
+
+
+</body>
+
+<style>
+
+    
+
+
+</style>

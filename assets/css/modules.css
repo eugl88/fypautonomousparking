@@ -1,0 +1,404 @@
+:root {
+    /* Folder Dimensions */
+    --folder-width: 40vw;
+    --folder-height: 40vh;
+    /* --background-color: rgba(204, 224, 192, 0.455); */
+    /* Colors */
+    /* --mainfolder-color: #c4cf9a; */
+    /* --backfolder-color: #BFCE89; */
+    /* Progress Bar */
+    --progress-active: #9ec8fff1;
+    --progress-inactive: #5595e818;
+    --progress-completed: #347EE1; 
+}
+/* Module-Specific Themes */
+.module-1 {
+    --background-color: rgba(208, 244, 194, 0.4);
+    --mainfolder-color: #91D18B;
+    --backfolder-color: #75B879;
+}
+.module-2 {
+    --background-color: rgba(255, 223, 186, 0.4);
+    --mainfolder-color: #FFB870;
+    --backfolder-color: #E89C54;
+}
+.module-3 {
+    --background-color: rgba(247, 223, 227, 0.4);
+    --mainfolder-color: #ed6d93;
+    --backfolder-color: #d8567d;
+}
+.module-4 {
+    --background-color: rgba(240, 248, 255, 0.4);
+    --mainfolder-color: #A3D8F4;
+    --backfolder-color: #78B2DE;
+}
+.module-5 {
+    --background-color: rgba(255, 254, 240, 0.4);
+    --mainfolder-color: #f4de8f;
+    --backfolder-color: #e7c444;
+}
+.viewer {
+    --background-color: black;
+}
+
+/* Navigation */
+.nav-container > a {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 3vw;
+    color: #333;
+}
+.nav-container > a > h1 {
+    font-weight: bold;
+    font-size: 2vw;
+    margin-right: 1vw;
+}
+.nav-container > a:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+.nav-container > a > img {
+    width: 2.2vw;
+    height: auto;
+}
+
+/* Folder */
+.back-folder-part {
+    position: absolute;
+    height: calc(var(--folder-width)*0.6);
+    width: var(--folder-width);
+    z-index: 1;
+}
+.back-folder-part:before {
+    content: '';
+    position: absolute;
+    background: var(--backfolder-color);
+    height: calc(var(--folder-width) * 0.04);
+    width: 70%;
+    top: max(calc(var(--folder-width) * -0.03), -20px);
+    right: 1%;
+    border-radius: 0 5px 0 0;
+}
+.back-folder-part:after {
+    content: '';
+    position: absolute;
+    background: var(--backfolder-color);
+    width: 30%;
+    height: calc(var(--folder-width) * 0.06);
+    top: calc(var(--folder-width) * -0.05);
+    border-radius: 8px 8px 0 0;
+}
+.back-folder-part > .folder-label {
+    position: absolute;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 10px;
+    margin: 1%;
+    top: calc(var(--folder-width) * -0.05);
+    left: 4%;
+    z-index: 2;
+    border-radius: 5px 5px 0 0;
+    font-family: var(--title-font);
+    font-size: 1vw;
+    font-weight: bold;
+}
+.main-folder-part {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(180deg, var(--mainfolder-color) 0%, var(--backfolder-color) 100%);
+    box-shadow: inset 0 1px 3px 0 rgba(255,255,255,0.50), 0 -2px 2px rgba(0,0,0,0.1);
+    height: calc(var(--folder-width)*0.6);
+    width: var(--folder-width);
+    z-index: 3;
+    border-radius: 5px;
+}
+.main-folder-part:after {
+    content:'';
+    box-shadow: 0 1px 3px 0 var(--mainfolder-color), 0 -2px 2px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.main-folder-part > video {
+    max-width: var(--folder-width);
+    height: 100%;
+    width: 100%;
+    padding: 1vw;
+}
+.main-folder-part > img {
+    max-width: var(--folder-width);
+    padding: 1vw;
+    height: 100%;
+}
+
+/* Controls */
+.controls-container {
+    display: grid;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: var(--folder-width);
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 1vw;
+    padding-bottom: 0.5vw;
+    border-top: 0.2vw double #555;
+    border-bottom: 0.2vw double #333;
+}
+.controls-container > button {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    background: none;
+    color: #333;
+    font-size: 3vw;
+    cursor: pointer;
+}
+.controls-container > button > span {
+    font-size: 1vw;
+    font-weight: bold;
+}
+/* Previous Button     */
+.previous-button {
+    grid-column-start: 1;
+}
+.previous-button:before {
+    content: '\2190'; /* Unicode for left arrow */
+}
+.previous-button:hover::before {
+    animation: moveLeft 1.5s ease infinite;
+}
+/* Replay Button */
+.replay-button {
+    grid-column-start: 2;
+}
+.replay-button::before {
+    content: '\21BB'; /* Unicode for circular arrow */
+    transform: rotate(10deg);
+}
+.replay-button:hover::before {
+    transform: rotate(90deg);
+}
+/* Next Button */
+.next-button {
+    grid-column-start: 3;
+}
+.next-button:before {
+    content: '\2192'; /* Unicode for right arrow */
+}
+.next-button:hover::before {
+    animation: moveRight 1.5s ease infinite;
+}
+/* Control Buttons Shadow */
+.replay-button:before, .next-button:before, .previous-button:before {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+}
+
+/* Progress Bar */
+.progress-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 1vw 0;
+}
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
+}
+.progress-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vw 0;
+    width: 3.5vw;
+    height: 3.5vw;
+    background-color: var(--progress-inactive);
+    border: 1px solid #022757b9;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.progress-icon > img {
+    width: 2vw;
+    height: auto;
+}
+.progress-text {
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #333;
+}
+.completed-step .progress-icon {
+    background-color: var(--progress-active);
+    /* border-color: var(--progress-active); */
+}
+.active-step .progress-icon {
+    background-color: var(--progress-active);
+    border: 0.2vw dashed rgba(255, 255, 255, 0.808);
+    transform: scale(1.2);
+}
+.progress-step:hover {
+    transform: scale(1.3);
+    transition: 0.3s;
+}
+.arrow {
+    position: relative;
+    transform: rotate(270deg);
+    cursor: pointer;
+    margin: 0.8vw 0 0 0;
+    margin-top: -1vw;
+}
+.arrow span {
+    display: block;
+    width: 0.5vw;
+    height: 0.5vw;
+    border-right: 0.2vw solid #555;
+    border-bottom: 0.2vw solid #555;
+    animation: animateRight 2s infinite;
+}
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+/* quiz element */
+.quiz {
+    /* include max-width to control the width */
+    width: fit-content;
+    padding: 1%;
+    margin: 1%;
+    border: 2px solid black;
+    border-radius: 2%;
+    background-color: white;
+}
+.question {
+    font-size: 1vw;
+    margin-bottom: 1vw;
+}
+.answers {
+    margin-bottom: 1vw;
+}
+.answer > input {
+    width: 1vw;
+    height: 1vw;
+}
+.answer {
+    display: block;
+    font-size: 0.8vw;
+    margin: 0.5vw;
+}
+.answer.correct {
+    color: green;
+}
+.answer.incorrect {
+    color: red;
+}
+.answer.unselected-correct {
+    color: green;
+}
+.feedback {
+    font-size: 0.8vw;
+    margin-top: 0.5vw;
+    color: #333;
+}
+.prompt {
+    font-size: 0.8vw;
+    margin-top: 20px;
+    color: #000;
+}
+.quiz_button {
+    padding: 0.3vw;
+    background-color: var(--mainfolder-color);
+}
+.quiz_button:hover{
+    background-color: white;
+    cursor: pointer;
+}
+/* Code box with overflow for scrolling */
+.code-box {
+    width: 100%;
+    max-height: 15vw; /* Adjust max height for scrollable area */
+    overflow: auto;    /* Allows both horizontal and vertical scrolling */
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1vw;
+    border-radius: 0.5vw;
+    font-size: 0.6vw;
+    white-space: pre-wrap; /* Ensures the code wraps correctly */
+    word-wrap: break-word; /* Prevents overflow issues */
+}
+.code-container > span {
+    font-size: 1vw;
+    font-weight: bold;
+    color: #222;
+}
+.code-container > button {
+    display: block;
+    width: 100%;
+    padding: 0.5vw;
+    background-color: #48b34b;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    font-size: 0.8vw;
+    cursor: pointer;
+    margin-top: 1vw;
+}
+.code-container > button:hover {
+    background-color: #45a049;
+}
+.copy-feedback {
+    margin-top: 1vw;
+    text-align: center;
+    color: green;
+    font-size: 0.8vw;
+}
+
+@keyframes animateRight {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-1vw, -1vw);
+    }
+    70% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(0.5vw, 0.5vw);
+    }
+}
+
+/* Define the keyframes for the animation */
+@keyframes moveRight {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(1vw);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+@keyframes moveLeft {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(-1vw);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checklist</title>
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/modules.css">
+    </head>
+</html>
+<body class="module-1">
+    <div class="nav-container">
+        <a href="../index.html">
+            <h1>&larr;</h1>
+            <img class="nav-image" src="../assets/media/icon_home.png" alt="Home Button">
+        </a>
+    </div>
+    <div class="folder-container">
+        <div class="back-folder-part">
+            <div class="folder-label">Complete</div>
+        </div>
+        <div class="main-folder-part">
+            <img src="../assets/media/image1.png" alt="Image 1">
+        </div>
+    </div>
+    <div class="controls-container">
+        <button class="previous-button" 
+        onclick="window.location.href='01_Quiz.html';">
+            <span>Previous</span>
+        </button>
+        
+        <button class="next-button" 
+        onclick="window.location.href='../index.html';">
+            <span>Next</span>
+        </button>
+    </div>
+    
+
+    <div class="progress-container">
+        <div class="progress-step completed-step" 
+        onclick="window.location.href='01_Introduction.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_introduction.png" alt="Introduction Icon">
+            </div>
+            <span class="progress-text">Introduction</span>
+        </div>
+        
+        <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="progress-step completed-step" 
+        onclick="window.location.href='01_Quiz.html';">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_quiz.png" alt="Components Icon">
+            </div>
+            <span class="progress-text">Quiz</span>
+        </div>
+        
+        <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+
+        <div class="progress-step active-step">
+            <div class="progress-icon">
+                <img src="../assets/media/icon_complete.png" alt="Complete Icon">
+            </div>
+            <span class="progress-text">Complete</span>
+        </div>
+        
+    </div>
+
+</body>
+
+<style>
+        .checklist-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 70%;
+            margin: 1.5vw;
+            background-color: rgba(250, 250, 250, 0.9);
+            border-radius: 5%;
+        }
+        .checklist-item {
+            position: relative;
+            cursor: pointer;
+            margin: 0.3vw;
+            transition: border 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .checklist-item img {
+            max-width: 70%;
+            display: block;
+        }
+        .checklist-item.selected {
+            border: 0.2vw solid #4c78af;
+            border-radius: 5%;
+        }
+        .caption {
+            position: absolute;
+            bottom: 3vw;
+            left: 80%;
+            transform: translateX(-50%);
+            background-color: rgba(48, 48, 48, 0.9);
+            color: #dddddd;
+            padding: 5px 10px;
+            font-size: 1vw;
+            border-radius: 5px;
+            display: none;
+        }
+        .checklist-item:hover .caption {
+            display: block;
+        }
+</style>
+<script>
+    function toggleBorder(element) {
+        element.classList.toggle("selected");
+    }
+</script>
